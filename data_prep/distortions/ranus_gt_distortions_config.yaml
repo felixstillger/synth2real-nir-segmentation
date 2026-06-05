@@ -1,0 +1,58 @@
+# Ground Truth (GT_8class) Distortion Configuration for Ranus
+# Process GT masks using the same distortions and random seeds as RGB/NIR images
+# This ensures spatial alignment between image and GT distortions
+
+dataset:
+  root_path: ../../data/Ranus_prepared/GT_8class
+  output_root: ../../data/Ranus_prepared/GT_8class_distorted
+  dataset_name: GT_8class
+  # Subdirectories within root_path where GT masks are located
+  image_subdirs:
+    - val
+    - test
+  # Mark this as mask dataset (single-channel grayscale)
+  is_mask: true
+  # Set mean_color manually or leave null to compute from dataset
+  mean_color: null
+  # File extensions to consider as images
+  image_extensions:
+    - .png
+    - .jpg
+    - .jpeg
+
+save_options:
+  # Set to true for JPEG format, false for PNG (GT should always be PNG)
+  use_jpeg: false
+
+distortions:
+  # Geometric distortions that will maintain spatial correspondence with image distortions
+  # Use identical random seeds for alignment
+  
+  swirl_transform:
+    - radius: 225
+      strength: 0.05
+    - radius: 225
+      strength: 0.1
+    - radius: 225
+      strength: 0.5
+    - radius: 225
+      strength: 1.0
+    - radius: 225
+      strength: 2.0
+
+  elastic_transform:
+    - alpha: 10
+      sigma: 4
+      rng_seed: 42
+    - alpha: 20
+      sigma: 4
+      rng_seed: 42
+    - alpha: 50
+      sigma: 4
+      rng_seed: 42
+    - alpha: 100
+      sigma: 4
+      rng_seed: 42
+    - alpha: 150
+      sigma: 4
+      rng_seed: 42

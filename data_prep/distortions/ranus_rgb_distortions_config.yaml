@@ -1,0 +1,150 @@
+# Dataset Configuration and Distortion Settings
+# Lines can be commented out with # to disable distortions without removing them
+
+dataset:
+  root_path: ../../data/Ranus_prepared/RGB
+  output_root: ../../data/Ranus_prepared/RGB_distorted
+  dataset_name: ranus_rgb
+  # Subdirectories within root_path where images are located
+  # Can be a list for multiple subdirectories, or a single string
+  image_subdirs:
+    - val
+    - test
+  # Set mean_color manually or leave null to compute from dataset
+  mean_color: null
+  # File extensions to consider as images
+  image_extensions:
+    - .png
+    - .jpg
+    - .jpeg
+
+save_options:
+  # Set to true for JPEG format, false for PNG
+  use_jpeg: false
+
+distortions:
+  # Uniform noise with contrast adjustment
+  uniform_noise:
+    - width: 0.0
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.03
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.05
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.1
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.2
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.35
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.6
+      contrast_level: 1.0
+      rng_seed: 42
+    - width: 0.9
+      contrast_level: 1.0
+      rng_seed: 42
+
+  # Low-pass filtering (blur effect)
+  low_pass_filter:
+    - std: 1
+    # - std: 3
+    - std: 5
+    # - std: 7
+    - std: 10
+    - std: 15
+    - std: 20
+    # - std: 40
+
+  swirl_transform:
+    - radius: 225
+      strength: 0.05
+    - radius: 225
+      strength: 0.1
+    - radius: 225
+      strength: 0.5
+    - radius: 225
+      strength: 1.0
+    - radius: 225
+      strength: 2.0
+
+  elastic_transform:
+    - alpha: 10
+      sigma: 4
+      rng_seed: 42
+    - alpha: 20
+      sigma: 4
+      rng_seed: 42
+    - alpha: 50
+      sigma: 4
+      rng_seed: 42
+    - alpha: 100
+      sigma: 4
+      rng_seed: 42
+    - alpha: 150
+      sigma: 4
+      rng_seed: 42
+
+  # Contrast adjustment without noise
+  # contrast:
+  #   - contrast_level: 0.01
+  #   - contrast_level: 0.03
+  #   - contrast_level: 0.05
+  #   - contrast_level: 0.10
+  #   - contrast_level: 0.15
+  #   - contrast_level: 0.30
+  #   - contrast_level: 0.50
+  #   - contrast_level: 1.00
+
+  # Salt and pepper noise
+  # salt_and_pepper_noise:
+  #   - p: 0.01
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.03
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.05
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.10
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.15
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.30
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.50
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+  #   - p: 0.70
+  #     contrast_level: 0.3
+  #     rng_seed: 42
+
+  # High-pass filtering (edge enhancement)
+  # high_pass_filter:
+  #   - std: 0.4
+  #   - std: 0.45
+  #   - std: 0.55
+  #   - std: 0.7
+  #   - std: 1.0
+  #   - std: 1.5
+  #   - std: 3.0
+  #   - std: inf  # Original image (can be omitted)
+
+  # Phase scrambling in Fourier domain
+  # phase_scrambling:
+  #   - width: 0
+  #   - width: 30
+  #   - width: 60
+  #   - width: 90
+  #   - width: 120
+  #   - width: 150
+  #   - width: 180

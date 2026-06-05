@@ -10,27 +10,27 @@ benchmark_datasets:
   ranus_nir_eed:
     name: Ranus NIR EED 5792 (Shape)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/NIR_EED/5792/test
-    seg_path: filtered_t10_agree80/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: NIR_EED/5792/test
+    seg_path: GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: shape
   ranus_nir_voronoi64:
     name: Ranus NIR Voronoi-64 (Texture)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/Voronoi_shuffled_64/NIR/test
-    seg_path: filtered_t10_agree80/Voronoi_shuffled_64/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: Voronoi_shuffled_64/NIR/test
+    seg_path: Voronoi_shuffled_64/GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: texture
   ranus_nir_voronoi128:
     name: Ranus NIR Voronoi-128 (Texture)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/voronoi_shuffle_128/NIR/test
-    seg_path: filtered_t10_agree80/voronoi_shuffle_128/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: Voronoi_shuffled_128/NIR/test
+    seg_path: Voronoi_shuffled_128/GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: texture
@@ -42,377 +42,399 @@ benchmark_pairs:
   shape_dataset: eed
   texture_dataset: voronoi128
 models:
-  # gta5_nir_segformer_mitb5:
-  #   name: SegFormer-B5 GTA5 NIR (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir/segformer_mit-b5_8xb1-60k_gta5_8class_nir.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_v1:
-  #   name: SegFormer-B5 GTA5 NIR (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_v2:
-  #   name: SegFormer-B5 GTA5 NIR (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v2.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi1_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi1_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi1_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  #   name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 0)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  #   name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 1)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  #   name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 2)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_025:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_025_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_025_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_075:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_075_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi4_075_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_025:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_025_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_025_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_075:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_075_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi8_075_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_025:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_025_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_025_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_075:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_075_v1:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_segformer_mitb5_voronoi16_075_v2:
-  #   name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5:
-  #   name: SegFormer-B5 Ranus NIR (seed 0)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5_v1:
-  #   name: SegFormer-B5 Ranus NIR (seed 1)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v1/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5_v2:
-  #   name: SegFormer-B5 Ranus NIR (seed 2)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v2/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
+  gta5_nir_segformer_mitb5:
+    name: SegFormer-B5 GTA5 NIR (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v1:
+    name: SegFormer-B5 GTA5 NIR (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v2:
+    name: SegFormer-B5 GTA5 NIR (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v2.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v1_100:
+    name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v1_100_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v1_100_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-1 (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v1_100_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_025:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop025_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_025_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop025_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_025_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 25% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_075:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop075_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_075_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop075_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v4_075_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-4 75% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v4_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_025:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop025_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_025_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop025_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_025_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 25% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_075:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop075_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_075_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop075_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v8_075_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-8 75% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v8_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_025:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop025_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_025_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop025_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_025_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 25% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_075:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop075_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_075_v1:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop075_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_segformer_mitb5_v16_075_v2:
+    name: SegFormer-B5 GTA5 NIR Voronoi-16 75% (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_nir_v16_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5:
+    name: SegFormer-B5 Ranus NIR (seed 0)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5_v1:
+    name: SegFormer-B5 Ranus NIR (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v1
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5_v2:
+    name: SegFormer-B5 Ranus NIR (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_v2
+    class_set: ranus_8class
+    modality: NIR
 
-  # gta5_rgb_segformer_mitb5:
-  #   name: "SegFormer-B5 GTA5 RGB (seed 0)"
-  #   config: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
+  gta5_rgb_segformer_mitb5:
+    name: "SegFormer-B5 GTA5 RGB (seed 0)"
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb"
+    class_set: "ranus_8class"
+    modality: "RGB"
 
-  # gta5_rgb_segformer_mitb5_v1:
-  #   name: "SegFormer-B5 GTA5 RGB (seed 1)"
-  #   config: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
+  gta5_rgb_segformer_mitb5_v1:
+    name: "SegFormer-B5 GTA5 RGB (seed 1)"
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1"
+    class_set: "ranus_8class"
+    modality: "RGB"
 
-  # gta5_rgb_segformer_mitb5_v2:
-  #   name: "SegFormer-B5 GTA5 RGB (seed 2)"
-  #   config: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v2"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
+  gta5_rgb_segformer_mitb5_v2:
+    name: "SegFormer-B5 GTA5 RGB (seed 2)"
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v2"
+    class_set: "ranus_8class"
+    modality: "RGB"
 
-  gta5_rgb_segformer_mitb5_voronoi1:
+  gta5_rgb_segformer_mitb5_v1_100:
     name: SegFormer-B5 GTA5 RGB Voronoi-1 (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi1_v1:
+  gta5_rgb_segformer_mitb5_v1_100_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-1 (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi1_v2:
+  gta5_rgb_segformer_mitb5_v1_100_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-1 (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi1_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v1_100_v2
     class_set: ranus_8class
     modality: RGB
-    name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 0)
-    class_set: ranus_8class
-    modality: RGB
-    name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 1)
-    class_set: ranus_8class
-    modality: RGB
-    name: SegFormer-B5 GTA5 Gray Voronoi-1 (seed 2)
-    class_set: ranus_8class
-    modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_025:
+  gta5_rgb_segformer_mitb5_v4_025:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_025_v1:
+  gta5_rgb_segformer_mitb5_v4_025_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_025_v2:
+  gta5_rgb_segformer_mitb5_v4_025_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_075:
+  gta5_rgb_segformer_mitb5_v4_075:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_075_v1:
+  gta5_rgb_segformer_mitb5_v4_075_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi4_075_v2:
+  gta5_rgb_segformer_mitb5_v4_075_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-4 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v4_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_025:
+  gta5_rgb_segformer_mitb5_v8_025:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_025_v1:
+  gta5_rgb_segformer_mitb5_v8_025_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_025_v2:
+  gta5_rgb_segformer_mitb5_v8_025_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_075:
+  gta5_rgb_segformer_mitb5_v8_075:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_075_v1:
+  gta5_rgb_segformer_mitb5_v8_075_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi8_075_v2:
+  gta5_rgb_segformer_mitb5_v8_075_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-8 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v8_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_025:
+  gta5_rgb_segformer_mitb5_v16_025:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_025_v1:
+  gta5_rgb_segformer_mitb5_v16_025_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_025_v2:
+  gta5_rgb_segformer_mitb5_v16_025_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_075:
+  gta5_rgb_segformer_mitb5_v16_075:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_075_v1:
+  gta5_rgb_segformer_mitb5_v16_075_v1:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v1/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_segformer_mitb5_voronoi16_075_v2:
+  gta5_rgb_segformer_mitb5_v16_075_v2:
     name: SegFormer-B5 GTA5 RGB Voronoi-16 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v2/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/segformer_mit-b5_8xb1-60k_gta5_8class_rgb_v16_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_segformer_mitb5:
     name: SegFormer-B5 Ranus RGB (seed 0)
-    config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_rgb
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_segformer_mitb5_v1:
     name: SegFormer-B5 Ranus RGB (seed 1)
-    config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v1/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v1
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v1
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_segformer_mitb5_v2:
     name: SegFormer-B5 Ranus RGB (seed 2)
-    config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v2/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v2
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_rgb_v2
     class_set: ranus_8class
     modality: RGB
 
-  # ranus_nir_segformer_mitb5_eed_5792_v1:
-  #   name: SegFormer-B5 Ranus NIR EED-5792 (seed 1)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v1/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v1.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5_eed_5792_v2:
-  #   name: SegFormer-B5 Ranus NIR EED-5792 (seed 2)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v2/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v2.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5_voronoi_shuffled64_v1:
-  #   name: SegFormer-B5 Ranus NIR Voronoi-shuffled-64 (seed 1)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v1/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v1.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_segformer_mitb5_voronoi_shuffled64_v2:
-  #   name: SegFormer-B5 Ranus NIR Voronoi-shuffled-64 (seed 2)
-  #   config: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v2/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v2.py
-  #   work_dir: work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
+  ranus_nir_segformer_mitb5_eed_5792_v1:
+    name: SegFormer-B5 Ranus NIR EED-5792 (seed 1)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v1.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v1
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5_eed_5792_v2:
+    name: SegFormer-B5 Ranus NIR EED-5792 (seed 2)
+    config: configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v2.py
+    work_dir: work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792_v2
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5_voronoi_shuffled64_v1:
+    name: SegFormer-B5 Ranus NIR Voronoi-shuffled-64 (seed 1)
+    config: 
+      configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v1.py
+    work_dir: 
+      work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v1
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_segformer_mitb5_voronoi_shuffled64_v2:
+    name: SegFormer-B5 Ranus NIR Voronoi-shuffled-64 (seed 2)
+    config: 
+      configs/segformer/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v2.py
+    work_dir: 
+      work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64_v2
+    class_set: ranus_8class
+    modality: NIR
 checkpoint:
   strategy: best
 
@@ -423,15 +445,15 @@ checkpoint:
 # _missing_models:
 #   ranus_nir_segformer_mitb5_eed_5792:
 #     name: "SegFormer-B5 Ranus NIR EED-5792 (seed 0) [MISSING]"
-#     config: "work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792.py"
-#     work_dir: "work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792"
+#     config: "work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792.py"
+#     work_dir: "work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_eed_5792"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_segformer_mitb5_voronoi_shuffled64:
 #     name: "SegFormer-B5 Ranus NIR Voronoi-shuffled-64 (seed 0) [MISSING]"
-#     config: "work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64.py"
-#     work_dir: "work_dirs/ranus/trainings/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64"
+#     config: "work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64.py"
+#     work_dir: "work_dirs/trainings/ranus/segformer_mit-b5_8xb1-60k_ranus_8class_nir_voronoi_shuffled64"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #

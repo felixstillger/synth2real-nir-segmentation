@@ -9,27 +9,27 @@ benchmark_datasets:
   ranus_nir_eed:
     name: Ranus NIR EED 5792 (Shape)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/NIR_EED/5792/test
-    seg_path: filtered_t10_agree80/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: NIR_EED/5792/test
+    seg_path: GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: shape
   ranus_nir_voronoi64:
     name: Ranus NIR Voronoi-64 (Texture)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/Voronoi_shuffled_64/NIR/test
-    seg_path: filtered_t10_agree80/Voronoi_shuffled_64/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: Voronoi_shuffled_64/NIR/test
+    seg_path: Voronoi_shuffled_64/GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: texture
   ranus_nir_voronoi128:
     name: Ranus NIR Voronoi-128 (Texture)
     dataset_type: Ranus8ClassDataset
-    data_root: /home/hamscher/datasets/Ranus_splits
-    img_path: filtered_t10_agree80/voronoi_shuffle_128/NIR/test
-    seg_path: filtered_t10_agree80/voronoi_shuffle_128/GT_8class/test
+    data_root: data/Ranus_prepared
+    img_path: Voronoi_shuffled_128/NIR/test
+    seg_path: Voronoi_shuffled_128/GT_8class/test
     class_set: ranus_8class
     modality: nir
     benchmark_type: texture
@@ -41,354 +41,378 @@ benchmark_pairs:
   shape_dataset: eed
   texture_dataset: voronoi128
 models:
-  # gta5_nir_mask2former:
-  #   name: Mask2Former GTA5 NIR (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir/mask2former_swin-l_8xb2-60k_gta5_8class_nir.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir
+  gta5_nir_mask2former:
+    name: Mask2Former GTA5 NIR (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v1:
+    name: Mask2Former GTA5 NIR (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v2:
+    name: Mask2Former GTA5 NIR (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v2.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v1_100:
+    name: Mask2Former GTA5 NIR Voronoi-1 (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v1_100_v1:
+    name: Mask2Former GTA5 NIR Voronoi-1 (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v1_100_v2:
+    name: Mask2Former GTA5 NIR Voronoi-1 (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1_100_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_025:
+    name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop025_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_025_v1:
+    name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop025_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_025_v2:
+    name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_075:
+    name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop075_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_075_v1:
+    name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop075_alpha10_v1
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v4_075_v2:
+    name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v4_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v8_025:
+    name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  # gta5_nir_mask2former_v8_025_v1:
+  #   name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 1)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_025.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10_v1
   #   class_set: ranus_8class
   #   modality: NIR
-  # gta5_nir_mask2former_v1:
-  #   name: Mask2Former GTA5 NIR (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v1
+  gta5_nir_mask2former_v8_025_v2:
+    name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  gta5_nir_mask2former_v8_075:
+    name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10
+    class_set: ranus_8class
+    modality: NIR
+  # gta5_nir_mask2former_v8_075_v1:
+  #   name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 1)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_075.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10_v1
   #   class_set: ranus_8class
   #   modality: NIR
-  # gta5_nir_mask2former_v2:
-  #   name: Mask2Former GTA5 NIR (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v2.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v2
+  gta5_nir_mask2former_v8_075_v2:
+    name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  # gta5_nir_mask2former_v16_025:
+  #   name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 0)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_025.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10
   #   class_set: ranus_8class
   #   modality: NIR
-  # gta5_nir_mask2former_voronoi1:
-  #   name: Mask2Former GTA5 NIR Voronoi-1 (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1
+  # gta5_nir_mask2former_v16_025_v1:
+  #   name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 1)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_025.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10_v1
   #   class_set: ranus_8class
   #   modality: NIR
-  # gta5_nir_mask2former_voronoi1_v1:
-  #   name: Mask2Former GTA5 NIR Voronoi-1 (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1_v1
+  gta5_nir_mask2former_v16_025_v2:
+    name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  # gta5_nir_mask2former_v16_075:
+  #   name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 0)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_075.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10
   #   class_set: ranus_8class
   #   modality: NIR
-  # gta5_nir_mask2former_voronoi1_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-1 (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi1_v2
+  # gta5_nir_mask2former_v16_075_v1:
+  #   name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 1)
+  #   config: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_075.py
+  #   work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10_v1
   #   class_set: ranus_8class
   #   modality: NIR
-  #   name: Mask2Former GTA5 Gray Voronoi-1 (seed 0)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  #   name: Mask2Former GTA5 Gray Voronoi-1 (seed 1)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  #   name: Mask2Former GTA5 Gray Voronoi-1 (seed 2)
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_025:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_025_v1:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_025_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_075:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_075_v1:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 1)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi4_075_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-4 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi4_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi8_025:
-  #   name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # # gta5_nir_mask2former_voronoi8_025_v1:
-  # #   name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 1)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_025.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v1
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # gta5_nir_mask2former_voronoi8_025_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-8 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # gta5_nir_mask2former_voronoi8_075:
-  #   name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 0)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # # gta5_nir_mask2former_voronoi8_075_v1:
-  # #   name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 1)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_075.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v1
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # gta5_nir_mask2former_voronoi8_075_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-8 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # # gta5_nir_mask2former_voronoi16_025:
-  # #   name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 0)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_025.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # # gta5_nir_mask2former_voronoi16_025_v1:
-  # #   name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 1)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_025.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v1
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # gta5_nir_mask2former_voronoi16_025_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-16 25% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_025.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # # gta5_nir_mask2former_voronoi16_075:
-  # #   name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 0)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_075.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # # gta5_nir_mask2former_voronoi16_075_v1:
-  # #   name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 1)
-  # #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_075.py
-  # #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v1
-  # #   class_set: ranus_8class
-  # #   modality: NIR
-  # gta5_nir_mask2former_voronoi16_075_v2:
-  #   name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 2)
-  #   config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_075.py
-  #   work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_mask2former:
-  #   name: Mask2Former Ranus NIR (seed 0)
-  #   config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_mask2former_v1:
-  #   name: Mask2Former Ranus NIR (seed 1)
-  #   config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v1/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_mask2former_v2:
-  #   name: Mask2Former Ranus NIR (seed 2)
-  #   config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
-  #   work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2
-  #   class_set: ranus_8class
-  #   modality: NIR
+  gta5_nir_mask2former_v16_075_v2:
+    name: Mask2Former GTA5 NIR Voronoi-16 75% (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10_v2
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_mask2former:
+    name: Mask2Former Ranus NIR (seed 0)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_mask2former_v1:
+    name: Mask2Former Ranus NIR (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v1
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_mask2former_v2:
+    name: Mask2Former Ranus NIR (seed 2)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_nir.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2
+    class_set: ranus_8class
+    modality: NIR
 
-  # gta5_rgb_mask2former:
-  #   name: "Mask2Former GTA5 RGB (seed 0)"
-  #   config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
-  # gta5_rgb_mask2former_v1:
-  #   name: "Mask2Former GTA5 RGB (seed 1)"
-  #   config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
-  # gta5_rgb_mask2former_v2:
-  #   name: "Mask2Former GTA5 RGB (seed 2)"
-  #   config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py"
-  #   work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v2"
-  #   class_set: "ranus_8class"
-  #   modality: "RGB"
+  gta5_rgb_mask2former:
+    name: "Mask2Former GTA5 RGB (seed 0)"
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb"
+    class_set: "ranus_8class"
+    modality: "RGB"
+  gta5_rgb_mask2former_v1:
+    name: "Mask2Former GTA5 RGB (seed 1)"
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1"
+    class_set: "ranus_8class"
+    modality: "RGB"
+  gta5_rgb_mask2former_v2:
+    name: "Mask2Former GTA5 RGB (seed 2)"
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb.py
+    work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v2"
+    class_set: "ranus_8class"
+    modality: "RGB"
 
-  gta5_rgb_mask2former_voronoi1:
+  gta5_rgb_mask2former_v1_100:
     name: Mask2Former GTA5 RGB Voronoi-1 (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi1_v1:
+  gta5_rgb_mask2former_v1_100_v1:
     name: Mask2Former GTA5 RGB Voronoi-1 (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi1_v2:
+  gta5_rgb_mask2former_v1_100_v2:
     name: Mask2Former GTA5 RGB Voronoi-1 (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi1_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100.py
+    work_dir: work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v1_100_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_025:
+  gta5_rgb_mask2former_v4_025:
     name: Mask2Former GTA5 RGB Voronoi-4 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_025_v1:
+  gta5_rgb_mask2former_v4_025_v1:
     name: Mask2Former GTA5 RGB Voronoi-4 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_025_v2:
+  gta5_rgb_mask2former_v4_025_v2:
     name: Mask2Former GTA5 RGB Voronoi-4 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop025_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_075:
+  gta5_rgb_mask2former_v4_075:
     name: Mask2Former GTA5 RGB Voronoi-4 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_075_v1:
+  gta5_rgb_mask2former_v4_075_v1:
     name: Mask2Former GTA5 RGB Voronoi-4 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi4_075_v2:
+  gta5_rgb_mask2former_v4_075_v2:
     name: Mask2Former GTA5 RGB Voronoi-4 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi4_prop075_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v4_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_025:
+  gta5_rgb_mask2former_v8_025:
     name: Mask2Former GTA5 RGB Voronoi-8 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_025_v1:
+  gta5_rgb_mask2former_v8_025_v1:
     name: Mask2Former GTA5 RGB Voronoi-8 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_025_v2:
+  gta5_rgb_mask2former_v8_025_v2:
     name: Mask2Former GTA5 RGB Voronoi-8 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop025_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_075:
+  gta5_rgb_mask2former_v8_075:
     name: Mask2Former GTA5 RGB Voronoi-8 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_075_v1:
+  gta5_rgb_mask2former_v8_075_v1:
     name: Mask2Former GTA5 RGB Voronoi-8 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi8_075_v2:
+  gta5_rgb_mask2former_v8_075_v2:
     name: Mask2Former GTA5 RGB Voronoi-8 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi8_prop075_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v8_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_025:
+  gta5_rgb_mask2former_v16_025:
     name: Mask2Former GTA5 RGB Voronoi-16 25% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop025_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_025_v1:
+  gta5_rgb_mask2former_v16_025_v1:
     name: Mask2Former GTA5 RGB Voronoi-16 25% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop025_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_025_v2:
+  gta5_rgb_mask2former_v16_025_v2:
     name: Mask2Former GTA5 RGB Voronoi-16 25% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_025.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop025_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_025.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop025_alpha10_v2
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_075:
+  gta5_rgb_mask2former_v16_075:
     name: Mask2Former GTA5 RGB Voronoi-16 75% (seed 0)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop075_alpha10
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_075_v1:
+  gta5_rgb_mask2former_v16_075_v1:
     name: Mask2Former GTA5 RGB Voronoi-16 75% (seed 1)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v1/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop075_alpha10_v1
     class_set: ranus_8class
     modality: RGB
-  gta5_rgb_mask2former_voronoi16_075_v2:
+  gta5_rgb_mask2former_v16_075_v2:
     name: Mask2Former GTA5 RGB Voronoi-16 75% (seed 2)
-    config: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_075.py
-    work_dir: work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_voronoi16_prop075_alpha10_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_075.py
+    work_dir: 
+      work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_rgb_v16_prop075_alpha10_v2
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_mask2former:
     name: Mask2Former Ranus RGB (seed 0)
-    config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_rgb
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_mask2former_v1:
     name: Mask2Former Ranus RGB (seed 1)
-    config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v1/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v1
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v1
     class_set: ranus_8class
     modality: RGB
   ranus_rgb_mask2former_v2:
     name: Mask2Former Ranus RGB (seed 2)
-    config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v2/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
-    work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v2
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_rgb.py
+    work_dir: work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_rgb_v2
     class_set: ranus_8class
     modality: RGB
 
-  # ranus_nir_mask2former_eed_5792_v1:
-  #   name: Mask2Former Ranus NIR EED-5792 (seed 1)
-  #   config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v1/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v1.py
-  #   work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
-  # ranus_nir_mask2former_voronoi_shuffled64_v1:
-  #   name: Mask2Former Ranus NIR Voronoi-shuffled-64 (seed 1)
-  #   config: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v1/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v1.py
-  #   work_dir: work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v1
-  #   class_set: ranus_8class
-  #   modality: NIR
+  ranus_nir_mask2former_eed_5792_v1:
+    name: Mask2Former Ranus NIR EED-5792 (seed 1)
+    config: configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v1.py
+    work_dir: 
+      work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v1
+    class_set: ranus_8class
+    modality: NIR
+  ranus_nir_mask2former_voronoi_shuffled64_v1:
+    name: Mask2Former Ranus NIR Voronoi-shuffled-64 (seed 1)
+    config: 
+      configs/mask2former/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v1.py
+    work_dir: 
+      work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v1
+    class_set: ranus_8class
+    modality: NIR
 checkpoint:
   strategy: best
 
@@ -397,80 +421,80 @@ checkpoint:
 # Uncomment once checkpoints become available
 # ============================================================
 # _missing_models:
-#   gta5_nir_mask2former_voronoi8_025:
+#   gta5_nir_mask2former_v8_025:
 #     name: "Mask2Former GTA5 NIR Voronoi-8 25% (seed 0)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_025.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_025.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
-#   gta5_nir_mask2former_voronoi8_025_v2:
+#   gta5_nir_mask2former_v8_025_v2:
 #     name: "Mask2Former GTA5 NIR Voronoi-8 25% (seed 2)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_025.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop025_alpha10_v2"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_025.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop025_alpha10_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
-#   gta5_nir_mask2former_voronoi8_075:
+#   gta5_nir_mask2former_v8_075:
 #     name: "Mask2Former GTA5 NIR Voronoi-8 75% (seed 0)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_075.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_075.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
-#   gta5_nir_mask2former_voronoi8_075_v2:
+#   gta5_nir_mask2former_v8_075_v2:
 #     name: "Mask2Former GTA5 NIR Voronoi-8 75% (seed 2)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_075.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi8_prop075_alpha10_v2"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_075.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v8_prop075_alpha10_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
-#   gta5_nir_mask2former_voronoi16_025_v2:
+#   gta5_nir_mask2former_v16_025_v2:
 #     name: "Mask2Former GTA5 NIR Voronoi-16 25% (seed 2)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_025.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop025_alpha10_v2"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_025.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop025_alpha10_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
-#   gta5_nir_mask2former_voronoi16_075_v2:
+#   gta5_nir_mask2former_v16_075_v2:
 #     name: "Mask2Former GTA5 NIR Voronoi-16 75% (seed 2)"
-#     config: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_075.py"
-#     work_dir: "work_dirs/gta5_nir/trainings/mask2former_swin-l_8xb2-60k_gta5_8class_nir_voronoi16_prop075_alpha10_v2"
+#     config: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10_v2/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_075.py"
+#     work_dir: "work_dirs/trainings/gta5/mask2former_swin-l_8xb2-60k_gta5_8class_nir_v16_prop075_alpha10_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_mask2former_v2:
 #     name: "Mask2Former Ranus NIR (seed 2) [MISSING]"
-#     config: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2.py"
-#     work_dir: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2"
+#     config: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2.py"
+#     work_dir: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_mask2former_eed_5792:
 #     name: "Mask2Former Ranus NIR EED-5792 (seed 0) [MISSING]"
-#     config: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792.py"
-#     work_dir: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792"
+#     config: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792.py"
+#     work_dir: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_mask2former_eed_5792_v2:
 #     name: "Mask2Former Ranus NIR EED-5792 (seed 2) [MISSING]"
-#     config: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2.py"
-#     work_dir: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2"
+#     config: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2.py"
+#     work_dir: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_eed_5792_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_mask2former_voronoi_shuffled64:
 #     name: "Mask2Former Ranus NIR Voronoi-shuffled-64 (seed 0) [MISSING]"
-#     config: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64.py"
-#     work_dir: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64"
+#     config: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64.py"
+#     work_dir: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
 #   ranus_nir_mask2former_voronoi_shuffled64_v2:
 #     name: "Mask2Former Ranus NIR Voronoi-shuffled-64 (seed 2) [MISSING]"
-#     config: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2.py"
-#     work_dir: "work_dirs/ranus/trainings/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2"
+#     config: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2.py"
+#     work_dir: "work_dirs/trainings/ranus/mask2former_swin-l_8xb2-60k_ranus_8class_nir_voronoi_shuffled64_v2"
 #     class_set: "ranus_8class"
 #     modality: "NIR"
 #
