@@ -1,0 +1,6 @@
+[submodule "segmentation/mmsegmentation"]
+	path = segmentation/mmsegmentation
+	url = https://github.com/open-mmlab/mmsegmentation
+[submodule "eed"]
+	path = eed
+	url = https://github.com/eheinert/reducing-texture-bias-of-dnns-via-eed
