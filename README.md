@@ -1,7 +1,7 @@
 # Texture-Shape Bias Balancing for Robust Synthetic-to-Real Semantic Segmentation in Automotive NIR Imagery
 
 > **Accepted to ECML-PKDD 2026**  
-> F. Stillger\*, B. Hamscher\*, A. Mütze, L. Hahn, T. Meisen, K. Maag
+> F. Stillger\*, B. Hamscher\*, L. Hahn, A. Mütze, T. Meisen, K. Maag
 
 This repository contains the code for synthesizing Near-Infrared (NIR) automotive datasets from RGB images and evaluating semantic segmentation models' robustness using texture and shape bias metrics.
 
