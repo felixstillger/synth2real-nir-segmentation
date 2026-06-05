@@ -1,0 +1,32 @@
+# Minimal smoke-test YAML for cross_domain_eval.py
+# Uses the GTA5 NIR DeepLabV3+ checkpoint from the original NIR project
+evaluation:
+  output_dir: /tmp/smoke_test_eval
+  save_visualizations: false
+  save_confusion_matrix: false
+  num_workers: 0
+  batch_size: 1
+
+checkpoint:
+  strategy: iter_80000.pth
+
+test_datasets:
+  ranus_nir_8class:
+    name: RANUS NIR (8-class)
+    dataset_type: Ranus8ClassDataset
+    data_root: /home/hamscher/datasets/Ranus_splits
+    test_img_path: NIR/test
+    test_seg_path: GT/test
+    domain: real
+    modality: nir
+    class_set: ranus_8class
+
+models:
+  gta5_nir_deeplabv3plus:
+    name: DeepLabV3+ GTA5 NIR
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir.py
+    work_dir: /home/hamscher/projects/NIR/mmsegmentation/work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir
+    train_dataset: gta5_nir_8class
+    architecture: deeplabv3plus
+    backbone: resnet50
+    class_set: ranus_8class

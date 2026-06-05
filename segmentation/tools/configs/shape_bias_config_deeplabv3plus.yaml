@@ -1,0 +1,416 @@
+# Shape & Texture Bias Evaluation Configuration - DeepLabv3+ (NIR-only, 8-class)
+# Evaluates shape bias using EED (edge-enhanced) vs Voronoi-64/128 (texture-shuffled)
+# Ranus-only evaluation (no GTA5 benchmarks)
+# All models with 3 seeds for statistical significance
+evaluation:
+  splits:
+  - test
+benchmark_datasets:
+  ranus_nir_eed:
+    name: Ranus NIR EED 5792 (Shape)
+    dataset_type: Ranus8ClassDataset
+    data_root: /home/hamscher/datasets/Ranus_splits
+    img_path: filtered_t10_agree80/NIR_EED/5792/test
+    seg_path: filtered_t10_agree80/GT_8class/test
+    class_set: ranus_8class
+    modality: nir
+    benchmark_type: shape
+  ranus_nir_voronoi64:
+    name: Ranus NIR Voronoi-64 (Texture)
+    dataset_type: Ranus8ClassDataset
+    data_root: /home/hamscher/datasets/Ranus_splits
+    img_path: filtered_t10_agree80/Voronoi_shuffled_64/NIR/test
+    seg_path: filtered_t10_agree80/Voronoi_shuffled_64/GT_8class/test
+    class_set: ranus_8class
+    modality: nir
+    benchmark_type: texture
+  ranus_nir_voronoi128:
+    name: Ranus NIR Voronoi-128 (Texture)
+    dataset_type: Ranus8ClassDataset
+    data_root: /home/hamscher/datasets/Ranus_splits
+    img_path: filtered_t10_agree80/voronoi_shuffle_128/NIR/test
+    seg_path: filtered_t10_agree80/voronoi_shuffle_128/GT_8class/test
+    class_set: ranus_8class
+    modality: nir
+    benchmark_type: texture
+benchmark_pairs:
+- name: shape_bias_64
+  shape_dataset: eed
+  texture_dataset: voronoi64
+- name: shape_bias_128
+  shape_dataset: eed
+  texture_dataset: voronoi128
+models:
+  # gta5_nir_deeplabv3plus:
+  #   name: DeepLabv3+ GTA5 NIR (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_v1:
+  #   name: DeepLabv3+ GTA5 NIR (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_v2:
+  #   name: DeepLabv3+ GTA5 NIR (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-1 (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi1_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-1 (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi1_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-1 (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi1_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  #   name: DeepLabv3+ GTA5 Gray Voronoi-1 (seed 0)
+  #   class_set: ranus_8class
+  #   modality: NIR
+  #   name: DeepLabv3+ GTA5 Gray Voronoi-1 (seed 1)
+  #   class_set: ranus_8class
+  #   modality: NIR
+  #   name: DeepLabv3+ GTA5 Gray Voronoi-1 (seed 2)
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_025:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 25% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_025_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 25% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_025_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 25% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_025_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_075:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 75% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_075_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 75% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi4_075_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-4 75% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi4_075_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_025:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 25% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_025_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 25% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_025_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 25% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_025_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_075:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 75% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_075_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 75% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi8_075_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-8 75% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi8_075_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_025:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 25% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_025_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 25% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_025_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 25% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_025_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_075:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 75% (seed 0)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_075_v1:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 75% (seed 1)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v1.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_nir_deeplabv3plus_voronoi16_075_v2:
+  #   name: DeepLabv3+ GTA5 NIR Voronoi-16 75% (seed 2)
+  #   config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v2.py
+  #   work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_nir_synth_voronoi16_075_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus:
+  #   name: DeepLabv3+ Ranus NIR (seed 0)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_v1:
+  #   name: DeepLabv3+ Ranus NIR (seed 1)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_v2:
+  #   name: DeepLabv3+ Ranus NIR (seed 2)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # gta5_rgb_8class_deeplabv3plus:
+  #   name: "DeepLabv3+ GTA5 RGB (seed 0)"
+  #   config: "configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb.py"
+  #   work_dir: "work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb"
+  #   class_set: "ranus_8class"
+  #   modality: "RGB"
+  # gta5_rgb_8class_deeplabv3plus_v1:
+  #   name: "DeepLabv3+ GTA5 RGB 8-class (seed 1)"
+  #   config: "configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb.py"
+  #   work_dir: "work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_v1"
+  #   class_set: "ranus_8class"
+  #   modality: "RGB"
+  # gta5_rgb_8class_deeplabv3plus_v2:
+  #   name: "DeepLabv3+ GTA5 RGB 8-class (seed 2)"
+  #   config: "configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb.py"
+  #   work_dir: "work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_v2"
+  #   class_set: "ranus_8class"
+  #   modality: "RGB"
+  gta5_rgb_deeplabv3plus_voronoi1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-1 (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi1_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-1 (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi1_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-1 (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi1_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_025:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 25% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_025_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 25% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_025_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 25% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_025_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_075:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 75% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_075_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 75% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi4_075_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-4 75% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi4_075_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_025:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 25% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_025_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 25% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_025_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 25% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_025_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_075:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 75% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_075_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 75% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi8_075_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-8 75% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi8_075_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_025:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 25% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_025_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 25% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_025_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 25% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_025_v2
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_075:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 75% (seed 0)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_075_v1:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 75% (seed 1)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v1/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v1.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v1
+    class_set: ranus_8class
+    modality: RGB
+  gta5_rgb_deeplabv3plus_voronoi16_075_v2:
+    name: DeepLabv3+ GTA5 RGB Voronoi-16 75% (seed 2)
+    config: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v2/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v2.py
+    work_dir: work_dirs/gta5_nir/trainings/deeplabv3plus_r50-d8_4xb2-80k_gta5_8class_rgb_voronoi16_075_v2
+    class_set: ranus_8class
+    modality: RGB
+  ranus_rgb_deeplabv3plus:
+    name: DeepLabv3+ Ranus RGB (seed 0)
+    config: configs/deeplabv3plus/rgb_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb.py
+    work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb
+    class_set: ranus_8class
+    modality: RGB
+  ranus_rgb_deeplabv3plus_v1:
+    name: DeepLabv3+ Ranus RGB (seed 1)
+    config: configs/deeplabv3plus/rgb_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb.py
+    work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb_v1
+    class_set: ranus_8class
+    modality: RGB
+  ranus_rgb_deeplabv3plus_v2:
+    name: DeepLabv3+ Ranus RGB (seed 2)
+    config: configs/deeplabv3plus/rgb_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb.py
+    work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_rgb_v2
+    class_set: ranus_8class
+    modality: RGB
+
+  
+  # ranus_nir_deeplabv3plus_eed_5792:
+  #   name: DeepLabv3+ Ranus NIR EED-5792 (seed 0)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_eed_5792_v1:
+  #   name: DeepLabv3+ Ranus NIR EED-5792 (seed 1)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_eed_5792_v2:
+  #   name: DeepLabv3+ Ranus NIR EED-5792 (seed 2)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_eed_5792_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_voronoi_shuffled64:
+  #   name: DeepLabv3+ Ranus NIR Voronoi-shuffled-64 (seed 0)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_voronoi_shuffled64_v1:
+  #   name: DeepLabv3+ Ranus NIR Voronoi-shuffled-64 (seed 1)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64_v1
+  #   class_set: ranus_8class
+  #   modality: NIR
+  # ranus_nir_deeplabv3plus_voronoi_shuffled64_v2:
+  #   name: DeepLabv3+ Ranus NIR Voronoi-shuffled-64 (seed 2)
+  #   config: configs/deeplabv3plus/nir_project/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64.py
+  #   work_dir: work_dirs/ranus/trainings/deeplabv3plus_r50-d8_4xb2-80k_ranus_8class_nir_voronoi_shuffled64_v2
+  #   class_set: ranus_8class
+  #   modality: NIR
+checkpoint:
+  strategy: best
