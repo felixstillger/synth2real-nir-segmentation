@@ -12,7 +12,7 @@ This repository contains the code for synthesizing Near-Infrared (NIR) automotiv
 - `synthesis/`: SDXL + ControlNet Union inference and LoRA training code.
 - `style_transfer/`: Voronoi Style Diversification method for training augmentation.
 - `segmentation/`: mmsegmentation configurations, custom datasets, metrics, and evaluation framework.
-- `eed/`: Edge Enforced Decoding (EED) oracle for shape bias evaluation.
+- `eed/`: Edge Enhancing Diffusion (EED) data generation for shape bias evaluation.
 
 ## Environment Setup
 
